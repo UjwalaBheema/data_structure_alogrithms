@@ -1,53 +1,13 @@
-# Approach-1 usual way to looping words
-# Timeout or stack level too deep (SystemStackError) for wordproblem
-# def longest_constructible_words(file_name)
-#     words = File.readlines(file_name, chomp: true).map(&:downcase).uniq.sort
-#     constructible_words = []
-#     longest_word = ""
-#     second_longest_word = ""
-#     memo = {}
-  
-#     words.each do |word|
-#       if can_be_constructed(word, words - [word])
-#         constructible_words << word
-#         if word.length > longest_word.length
-#             second_longest_word = longest_word
-#             longest_word = word
-#         elsif word.length == longest_word.length
-#             # do nothing, we already have a word of this length
-#         elsif word.length > second_longest_word.length && word.length < longest_word.length
-#             second_longest_word = word
-#         end
-#       end
-#     end
-  
-#     puts "longest_constructible_words: Longest word: #{longest_word}"
-#     puts "longest_constructible_words: Second longest word: #{second_longest_word}"
-#     puts "longest_constructible_words: Count of constructible words: #{constructible_words.size}"
-#   end
-  
-#   def can_be_constructed(word, words, memo = {})
-#     return true if word.empty?
-#     return memo[word] if memo.key?(word)
-  
-#     words.any? do |other_word|
-#       if word.start_with?(other_word) && can_be_constructed(word[other_word.length..-1], words, memo)
-#         memo[word] = true
-#         return true
-#       end
-#     end
-  
-#     memo[word] = false
-#     false
-#   end
-  
-#   # filename = '/Users/ujwalabheema/Downloads/catdog.txt'
-#   filename = '/Users/ujwalabheema/Downloads/wordsforproblem.txt'
-  
-#   longest_constructible_words(filename)
+# Command to execute:
+# Navigate to the file path and run in terminal
+# > ruby longest_concat_str.rb
 
-# Approach2 - reference https://linux.thai.net/~thep/datrie/
-# Trie data structure
+# Prerequisites:
+# 1. Install Ruby.
+# 2. Update the `filename` variable (line 238) with the path to `catdog.txt`.
+# 3. Update the `filename` variable (line 267) with the path to `wordproblem.txt`.
+
+# Trie data structure - Reference https://linux.thai.net/~thep/datrie/
 class Node
   attr_accessor :children, :is_end
   
@@ -248,7 +208,7 @@ puts "Longest word made of other words: #{longest_words}"
 puts "Words in the list can be constructed of other words to the longest word: #{words_contributing_to_longest}"
 longest_words.each_with_index do |word, index|
   puts "\n \n Longest word #{index+1}.#{word}"
-  puts "Total count of words that can be constructed from longest word: #{sec_words_contributing_to_longest[index].size}"
+  puts "Total count of words that can be constructed from longest word: #{words_contributing_to_longest[index].size}"
   puts "Words in the list can be constructed of other words to the longest word: #{words_contributing_to_longest[index]}"
   
 end
@@ -272,7 +232,7 @@ puts "Number of words that can be constructed of other words: #{concatenated_wor
 puts "Longest word made of other words: #{longest_words}"
 longest_words.each_with_index do |word, index|
   puts "\n \n Longest word #{index+1}.#{word}"
-  puts "Total count of words that can be constructed from longest word: #{sec_words_contributing_to_longest[index].size}"
+  puts "Total count of words that can be constructed from longest word: #{words_contributing_to_longest[index].size}"
   puts "Words in the list can be constructed of other words to the longest word: #{words_contributing_to_longest[index]}"
   
 end
@@ -300,7 +260,7 @@ puts " \n ********** -------- wordsforproblem end ---------- **********"
 
  
 #  Longest word 1.ratcatdogcat
-# Total count of words that can be constructed from longest word: 3
+# Total count of words that can be constructed from longest word: 4
 # Words in the list can be constructed of other words to the longest word: ["rat", "cat", "dog", "cat"]
 
 #  Second Longest word in the wordsforproblem
@@ -321,7 +281,7 @@ puts " \n ********** -------- wordsforproblem end ---------- **********"
 
  
 #  Longest word 1.ethylenediaminetetraacetates
-# Total count of words that can be constructed from longest word: 7
+# Total count of words that can be constructed from longest word: 6
 # Words in the list can be constructed of other words to the longest word: ["ethylene", "diamine", "tetra", "ace", "tat", "es"]
 
 #  Second Longest word in the wordsforproblem
@@ -334,6 +294,9 @@ puts " \n ********** -------- wordsforproblem end ---------- **********"
 # Second Longest word 2.ethylenediaminetetraacetate
 # Total count of words that can be constructed from second longest word: 5
 # Words in the list can be constructed of other words to the second longest word: ["ethylene", "diamine", "tetra", "ace", "tate"]
+ 
+#  ********** -------- wordsforproblem end ---------- **********
+
  
 #  ********** -------- wordsforproblem end ---------- **********
 
