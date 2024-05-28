@@ -6,7 +6,7 @@ class TrieNode
       @is_end = false
     end
   end
-  
+
   class Trie
     attr_accessor :root
   
@@ -73,5 +73,5 @@ class TrieNode
     puts "Number of words that can be constructed of other words: #{constructible_words}"
   end
   
-  filename = '/Users/ujwalabheema/Downloads/catdog.txt'
+  filename = 'catdog.txt'
   report_longest_concatenated_words(filename)
